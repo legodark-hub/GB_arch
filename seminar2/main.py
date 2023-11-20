@@ -1,4 +1,4 @@
-from random import randint
+from random import choices, randint
 from Fabrics.gem_generator import GemGenerator
 from Fabrics.gold_generator import GoldGenerator
 from Fabrics.bronze_generator import BronzeGenerator
@@ -18,5 +18,9 @@ rewards = [
     SilverGenerator(),
 ]
 
+# Веса для каждой награды
+weights = [3, 1, 10, 10, 10, 10, 10]
+
 for i in range(20):
-    rewards[randint(0, 6)].create_item().open()
+    chosen_reward = choices(rewards, weights)[0]
+    chosen_reward.create_item().open()
